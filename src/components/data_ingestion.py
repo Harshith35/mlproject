@@ -1,7 +1,8 @@
 import os
 import sys
-from src.exception import CustomException
-from src.logger import logging
+sys.path.append(os.path.abspath('D:/Studies/DataScienceProjects/mlproject/src'))
+from exception import CustomException
+from logger import logging
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -36,7 +37,7 @@ class DataIngestion:
 
             test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
 
-            logging.info("Inmgestion of the data iss completed")
+            logging.info("Ingestion of the data is completed")
 
             return(
                 self.ingestion_config.train_data_path,
@@ -46,3 +47,6 @@ class DataIngestion:
         except Exception as e:
             raise CustomException(e,sys)
         
+if __name__=="__main__":
+    obj = DataIngestion()
+    obj.initiate_data_ingestion()
